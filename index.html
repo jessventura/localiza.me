@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastrear Localização</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #location {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rastrear sua Localização</h1>
+    <button id="getLocation">Obter Localização</button>
+    <p id="location"></p>
+
+    <script>
+        document.getElementById("getLocation").onclick = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    document.getElementById("location").innerText = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                    // Aqui você pode enviar a localização para um servidor, se necessário
+                }, function() {
+                    alert("Erro ao obter a localização.");
+                });
+            } else {
+                alert("Geolocalização não é suportada por este navegador.");
+            }
+        };
+    </script>
+</body>
+</html>
